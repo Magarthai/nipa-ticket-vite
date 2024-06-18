@@ -48,7 +48,7 @@ const TicketTable: FC<ITicketTable> = ({ ticket, status }) => {
               navigateToTicketInfo(item);
             }}
             key={item.id}
-            className="flex flex-row ticket bg-white p-[10px] m-[10px] w-[98.5%] rounded-md cursor-pointer"
+            className="flex flex-row ticket bg-white p-[10px] m-[10px] w-[98.5%] rounded-md cursor-pointer justify-center items-center"
           >
             <td className="w-[50px] flex-row text-left m-[20px] flex">
               {item.id}
