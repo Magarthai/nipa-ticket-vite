@@ -58,7 +58,9 @@ const TicketTable: FC<ITicketTable> = ({ ticket, status }) => {
             <td className="w-[200px] overflow-x-hidden text-left flex">
               {item.email}
             </td>
-            <td className=" w-[430px]">{item.detail}</td>
+            <td className=" w-[430px] max-w-[430px] overflow-x-hidden">
+              {item.detail}
+            </td>
             <td className="w-[200px] flex justify-between items-center h-[44px]">
               <TicketStatus item={item} />
             </td>

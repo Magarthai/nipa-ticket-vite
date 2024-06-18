@@ -36,6 +36,7 @@ const Navbar: FC<A> = ({ page }) => {
         console.log(err);
         Swal.fire({
           title: "ล็อคเอ้าท์ไม่สําเร็จ!",
+          text: "ไม่พบ Token",
           icon: "error",
           confirmButtonText: "ตกลง",
           confirmButtonColor: "#263A50",
