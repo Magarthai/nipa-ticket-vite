@@ -3,7 +3,7 @@ import { ITicketEntity } from "../../store/TicketStore";
 import { IUserEntity } from "../../store/UserStore";
 import { useSelectedTicketStore } from "../../store/SelectedTicketStore";
 import { useNavigate } from "react-router-dom";
-import TicketStatus from "./TicketStatus";
+import TicketTableStatus from "./TicketTableStatus";
 
 interface ITicketTable {
   ticket: ITicketEntity[];
@@ -40,15 +40,16 @@ const TicketTable: FC<ITicketTable> = ({ ticket, status }) => {
           <th className="w-[20px]">อัพเดต</th>
         </tr>
       </thead>
-      {renderTicket.map((item: ITicketEntity, index: number) => (
-        <tbody
-          key={item.id}
-          className="flex flex-row ticket bg-white p-[10px] m-[10px] w-[90%] rounded-md cursor-pointer"
-          onClick={() => {
-            navigateToTicketInfo(item);
-          }}
-        >
-          <tr key={index} className="flex flex-row justify-center items-center">
+
+      <tbody>
+        {renderTicket.map((item: ITicketEntity) => (
+          <tr
+            onClick={() => {
+              navigateToTicketInfo(item);
+            }}
+            key={item.id}
+            className="flex flex-row ticket bg-white p-[10px] m-[10px] w-[98.5%] rounded-md cursor-pointer"
+          >
             <td className="w-[50px] flex-row text-left m-[20px] flex">
               {item.id}
             </td>
@@ -62,11 +63,11 @@ const TicketTable: FC<ITicketTable> = ({ ticket, status }) => {
               {item.detail}
             </td>
             <td className="w-[200px] flex justify-between items-center h-[44px]">
-              <TicketStatus item={item} />
+              <TicketTableStatus item={item} />
             </td>
           </tr>
-        </tbody>
-      ))}
+        ))}
+      </tbody>
     </table>
   );
 };

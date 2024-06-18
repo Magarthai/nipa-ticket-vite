@@ -1,30 +1,31 @@
 import { FC } from "react";
 import { ITicketEntity } from "../../store/TicketStore";
 import Image from "../../assets/img/nullimage.png";
+import { TicketStatus } from "../../enum/TicketStatus";
 interface ITicket {
   selectTicket?: ITicketEntity;
 }
 
 const headerStyle = (ticket?: ITicketEntity) => {
-  if (ticket?.status == "pending") {
+  if (ticket?.status == TicketStatus.PENDING) {
     return "ticket-info-status flex justify-center item-center rounded-md text-[20px] absolute w-[120px] bg-[#808080] p-[5px]";
-  } else if (ticket?.status == "success") {
+  } else if (ticket?.status == TicketStatus.SUCCESS) {
     return "ticket-info-status flex justify-center item-center rounded-md  text-[20px] absolute w-[120px] bg-[#44d427] p-[5px]";
-  } else if (ticket?.status == "reject") {
+  } else if (ticket?.status == TicketStatus.REJECT) {
     return "ticket-info-status flex justify-center item-center rounded-md  text-[20px] absolute w-[120px] bg-[#f13838] p-[5px]";
-  } else if (ticket?.status == "accepted") {
+  } else if (ticket?.status == TicketStatus.ACCEPTED) {
     return "ticket-info-status flex justify-center item-center rounded-md  text-[20px] absolute w-[120px] bg-[#f1c638] p-[5px]";
   }
 };
 
 const statusName = (ticket?: ITicketEntity) => {
-  if (ticket?.status == "pending") {
+  if (ticket?.status == TicketStatus.PENDING) {
     return "รอรับเรื่อง";
-  } else if (ticket?.status == "success") {
+  } else if (ticket?.status == TicketStatus.SUCCESS) {
     return "เสร็จสิ้น";
-  } else if (ticket?.status == "reject") {
+  } else if (ticket?.status == TicketStatus.REJECT) {
     return "ไม่รับเรื่อง";
-  } else if (ticket?.status == "accepted") {
+  } else if (ticket?.status == TicketStatus.ACCEPTED) {
     return "รับเรื่องแล้ว";
   }
 };

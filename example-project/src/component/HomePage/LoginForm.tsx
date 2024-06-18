@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { Login } from "../../service/API/users";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { swalFire } from "../../service/function/Swalfire";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
   const IsSubmitEnable = !email || !password;
 
   const userLogin = async () => {
@@ -18,33 +17,24 @@ const LoginForm = () => {
       const userlogin = await Login(login_info);
 
       if (userlogin == "User logged in successfully") {
-        Swal.fire({
-          icon: "success",
-          title: "ล็อคอินสําเร็จ",
-          text: "ยินดีต้อนรับเข้าสู่เว็ปไซต์ Nipa Cloud!",
-          confirmButtonText: "ตกลง",
-          confirmButtonColor: "#263A50",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            navigate("/ticket");
-          } else {
-          }
+        swalFire({
+          title: "สําเร็จ!",
+          icon: "warning",
+          text: "คุณได้ล็อคอินสําเร็จ",
+        }).then(() => {
+          window.location.reload();
         });
       } else if (userlogin == "Invalid password") {
-        Swal.fire({
+        swalFire({
+          title: "เกิดข้อผิดพลาด!",
           icon: "error",
-          title: "ล็อคอินไม่สําเร็จ",
-          text: "กรุณาลองใหม่อีกครั้ง!",
-          confirmButtonText: "ตกลง",
-          confirmButtonColor: "#263A50",
+          text: "คุณล็อคอินไม่สําเร็จ กรุณาตรวจสอบใหม่อีกครั้ง",
         });
       } else {
-        Swal.fire({
+        swalFire({
+          title: "เกิดข้อผิดพลาด!",
           icon: "error",
-          title: "ล็อคอินไม่สําเร็จ",
-          text: "ไม่พบบัญชีนี้ในระบบ!",
-          confirmButtonText: "ตกลง",
-          confirmButtonColor: "#263A50",
+          text: "กรุณาลองใหม่อีกครั้ง",
         });
       }
     } catch (err) {

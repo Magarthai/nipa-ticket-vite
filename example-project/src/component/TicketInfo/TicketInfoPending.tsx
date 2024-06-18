@@ -5,6 +5,8 @@ import { useSelectedTicketStore } from "../../store/SelectedTicketStore";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { ITicketComponent } from "../../dto/ITicketComponent";
+import { swalFire } from "../../service/function/Swalfire";
+import { TicketStatus } from "../../enum/TicketStatus";
 
 const TicketInfoPending: FC<ITicketComponent> = ({
   selectTicket,
@@ -29,15 +31,12 @@ const TicketInfoPending: FC<ITicketComponent> = ({
       updateStatus: "accepted",
     };
 
-    Swal.fire({
-      title: "รับเรื่องแล้ว",
+    swalFire({
+      title: "สําเร็จ!",
       icon: "success",
-      confirmButtonText: "ตกลง",
-      confirmButtonColor: "#263A50",
-      customClass: {
-        confirmButton: "custom-confirm-button",
-      },
+      text: "คุณได้รับเรื่องแล้ว",
     });
+
     await UpdateTicket(info);
     setSelectValue(undefined);
     navigate("/ticket");
@@ -45,7 +44,7 @@ const TicketInfoPending: FC<ITicketComponent> = ({
 
   return (
     <>
-      {selectTicket?.status == "pending" && (
+      {selectTicket?.status == TicketStatus.PENDING && (
         <div className="w-[100%] flex justify-center items-center">
           <button
             onClick={() => acceptTicket(selectTicket)}

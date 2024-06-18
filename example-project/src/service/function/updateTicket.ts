@@ -4,6 +4,7 @@ import { UpdateTicket } from "../API/tickets";
 import { ITicketEntity } from "../../store/TicketStore";
 import Swal from "sweetalert2";
 import { queryClient } from "../queryClient";
+import { swalFire } from "./Swalfire";
 
 export async function acceptTicket(
   ticket: ITicketEntity,
@@ -30,15 +31,8 @@ export async function acceptTicket(
     updateStatus: "accepted",
   };
 
-  Swal.fire({
-    title: "รับเรื่องแล้ว",
-    icon: "success",
-    confirmButtonText: "ตกลง",
-    confirmButtonColor: "#263A50",
-    customClass: {
-      confirmButton: "custom-confirm-button",
-    },
-  });
+  swalFire({ title: "สําเร็จ!", icon: "success", text: "คุณได้รับเรื่องแล้ว" });
+
   await updateAccept.mutateAsync(info);
   queryClient.invalidateQueries({
     queryKey: ["tickets"],

@@ -6,6 +6,7 @@ import SelectTopicInput from "../Input/SelectTopicInput";
 import TextInput from "../Input/TextInput";
 import TextAreaInput from "../Input/TextAreaInput";
 import { queryClient } from "../../service/queryClient";
+import { swalFire } from "../../service/function/Swalfire";
 
 const options = [
   { value: "ปัญหาด้านเว็ปไซต์", label: "ปัญหาด้านเว็ปไซต์" },
@@ -40,14 +41,10 @@ const CreateTicketForm = ({}) => {
     queryClient.invalidateQueries({
       queryKey: ["tickets"],
     });
-    Swal.fire({
-      title: "สร้างรายการสําเร็จ",
+    swalFire({
+      title: "สําเร็จ!",
       icon: "success",
-      confirmButtonText: "ตกลง",
-      confirmButtonColor: "#263A50",
-      customClass: {
-        confirmButton: "custom-confirm-button",
-      },
+      text: "สร้างรายการ Ticket สําเร็จ",
     }).then(() => {
       window.location.reload();
     });

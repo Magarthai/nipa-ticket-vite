@@ -4,14 +4,13 @@ import { useNavigate } from "react-router-dom";
 import LoginPopup from "./HomePage/LoginPopup";
 import { Logout } from "../service/API/users";
 import Swal from "sweetalert2";
+import { swalFire } from "../service/function/Swalfire";
 interface A {
   page: string;
 }
 
 const Navbar: FC<A> = ({ page }) => {
   const [openPopup, setOpenPopup] = useState(false);
-
-  const navigate = useNavigate();
 
   const navButton = async (page: string) => {
     if (page == "home") {
@@ -21,30 +20,22 @@ const Navbar: FC<A> = ({ page }) => {
         console.log("logout");
         const logout = await Logout();
         if (logout == "success") {
-          Swal.fire({
-            title: "ล็อคเอ้าท์สําเร็จ!",
+          swalFire({
+            title: "สําเร็จ!",
             icon: "success",
-            confirmButtonText: "ตกลง",
-            confirmButtonColor: "#263A50",
-            customClass: {
-              confirmButton: "custom-confirm-button",
-            },
+            text: "คุณได้ล็อคเอ้าท์สําเร็จ",
           });
-          navigate("/");
+
+          window.location.reload();
         }
       } catch (err) {
         console.log(err);
-        Swal.fire({
-          title: "ล็อคเอ้าท์ไม่สําเร็จ!",
-          text: "ไม่พบ Token",
-          icon: "error",
-          confirmButtonText: "ตกลง",
-          confirmButtonColor: "#263A50",
-          customClass: {
-            confirmButton: "custom-confirm-button",
-          },
+        swalFire({
+          title: "เกิดข้อผิดพลาด!",
+          icon: "warning",
+          text: "ไม่พบ Token กรุณาล็อคอินใหม่",
         });
-        navigate("/");
+        window.location.reload();
       }
     }
   };

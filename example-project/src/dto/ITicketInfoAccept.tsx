@@ -7,6 +7,8 @@ import { useSelectedTicketStore } from "../store/SelectedTicketStore";
 import { ITicketEntity } from "../store/TicketStore";
 import { useNavigate } from "react-router-dom";
 import { queryClient } from "../service/queryClient";
+import { swalFire } from "../service/function/Swalfire";
+import { TicketStatus } from "../enum/TicketStatus";
 
 const ITicketInfoAccept: FC<ITicketComponent> = ({
   selectTicket,
@@ -41,12 +43,10 @@ const ITicketInfoAccept: FC<ITicketComponent> = ({
       queryKey: ["tickets"],
     });
 
-    Swal.fire({
+    swalFire({
+      title: "สําเร็จ!",
       icon: "success",
-      title: "ปิด Ticket แล้ว",
-      text: "ทําเรื่องสําเร็จ!",
-      confirmButtonText: "ตกลง",
-      confirmButtonColor: "#263A50",
+      text: "คุณได้ปิด Ticket นี้แล้ว",
     });
 
     setSelectValue(undefined);
@@ -56,7 +56,7 @@ const ITicketInfoAccept: FC<ITicketComponent> = ({
   };
   return (
     <>
-      {selectTicket?.status == "accepted" && (
+      {selectTicket?.status == TicketStatus.ACCEPTED && (
         <>
           <div className="textarea-wrapper w-[100%] flex justify-center items-center flex-col">
             <div className="text-area-header text-[20px] w-[80%] m-[10px] justify-start">

@@ -44,12 +44,11 @@ const TicketPage: FC = () => {
 
   useEffect(() => {
     if (isSuccess && data) {
-      startTransition(() => {
-        if (!userData) {
-          checkToken();
-        }
-        setValue(data.ticket);
-      });
+      if (!userData) {
+        checkToken();
+      }
+      setValue(data.ticket);
+
       console.log(ticket);
     }
   }, [isSuccess, data, setValue]);
