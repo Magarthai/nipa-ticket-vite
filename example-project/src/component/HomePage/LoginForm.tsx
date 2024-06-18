@@ -19,7 +19,7 @@ const LoginForm = () => {
       if (userlogin == "User logged in successfully") {
         swalFire({
           title: "สําเร็จ!",
-          icon: "warning",
+          icon: "success",
           text: "คุณได้ล็อคอินสําเร็จ",
         }).then(() => {
           window.location.reload();

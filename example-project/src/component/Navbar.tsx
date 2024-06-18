@@ -24,9 +24,9 @@ const Navbar: FC<A> = ({ page }) => {
             title: "สําเร็จ!",
             icon: "success",
             text: "คุณได้ล็อคเอ้าท์สําเร็จ",
+          }).then(() => {
+            window.location.reload();
           });
-
-          window.location.reload();
         }
       } catch (err) {
         console.log(err);
