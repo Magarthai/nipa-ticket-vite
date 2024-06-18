@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useUserStore } from "../../store/UserStore";
 import CreateTicketForm from "../../component/HomePage/CreateTicketForm";
 import { Hourglass } from "react-loader-spinner";
+import Swal from "sweetalert2";
 
 function HomePage() {
   const { setUser } = useUserStore();
@@ -30,7 +31,25 @@ function HomePage() {
   }, [data]);
 
   if (isError) {
-    return <>{error.message}</>;
+    return (
+      <div className="landing-page-containers w-[100%] h-[100vh] flex items-center justify-center text-[30px]">
+        <div className="error-wrapper w-[500px] h-[300px] p-[40px] bg-[#133D94] rounded-xl justify-center items-center flex flex-col text-white">
+          <img
+            width={200}
+            src="https://th.bing.com/th/id/R.44e5ed643431e726d611283422cc296e?rik=iHSRYCIpFWpGlA&pid=ImgRaw&r=0"
+            alt="error icon"
+          />
+          <p>เกิดข้อผิดพลาด</p>
+          <p>{error.message}</p>
+          <button
+            className="pl-[20px] pr-[20px] bg-white rounded-md text-[#133D94] mt-[10px] cursor-pointer"
+            onClick={() => window.location.reload()}
+          >
+            Relaod
+          </button>
+        </div>
+      </div>
+    );
   }
 
   if (!isSuccess) {
