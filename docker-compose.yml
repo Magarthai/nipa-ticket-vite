@@ -27,9 +27,22 @@ services:
       DB_USER: postgres
       DB_PASSWORD: password
       DB_NAME: nipa-ticket
-    
     depends_on:
       - postgres
+
+  
+  knex-migration:
+    build: ./koaserver
+    command: npx knex migrate:latest
+    environment:
+      DB_HOST: postgres
+      DB_USER: postgres
+      DB_PASSWORD: password
+      DB_NAME: nipa-ticket
+    depends_on:
+      - postgres
+
+  
 
 networks:
   default:
