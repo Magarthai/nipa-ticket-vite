@@ -27,7 +27,7 @@ services:
       DB_USER: postgres
       DB_PASSWORD: password
       DB_NAME: nipa-ticket
-    command: npx knex migrate:latest
+    
     depends_on:
       - postgres
 
