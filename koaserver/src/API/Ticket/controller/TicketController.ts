@@ -38,10 +38,23 @@ export class TicketController {
     };
   }
 
+  @Get("/:id")
+  async getTicketByID(
+    @Param("id") id: number
+  ): Promise<GenericGetTicketResponse<ITicketList>> {
+    const data = await this.ticketService.getTicketById(id);
+    return {
+      message: "Ticket fetch successfully",
+      ticket: data,
+    };
+  }
+
   @Post("/")
   async createTicket(@Body() ticket: ITicketCreateRequest): Promise<IMessage> {
+    console.log(ticket);
     const create = await this.ticketService.createTicket(ticket);
     if (!create.data) {
+      console.log("test");
       throw new TicketNotFoundError("Ticket not found !");
     }
     return { message: "Ticket created successfully" };

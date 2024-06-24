@@ -15,7 +15,7 @@ useContainer(Container);
 const koaApp = createKoaServer({
   cors: {
     credentials: true,
-    origin: ["http://localhost:5173"],
+    origin: ["http://localhost:8080"],
   },
   defaultErrorHandler: false,
   controllers: [

@@ -12,11 +12,6 @@ export async function createTicket(data: Record<string, any>) {
   return createData.data;
 }
 
-export async function updateTicket(data: Record<string, any>) {
-  const createData = await axios.post("http://localhost:5000/tickets", data);
-  return createData.data;
-}
-
 export async function UpdateTicket(info: any) {
   console.log(info);
   const response = await axios.put(

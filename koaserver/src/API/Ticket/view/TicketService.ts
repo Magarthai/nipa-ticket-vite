@@ -35,6 +35,7 @@ export class TicketService {
     ticket: ITicketCreateRequest
   ): Promise<ITicketCreateServiceRespone> {
     const data = await this.ticketRepositorys.createTicket(ticket);
+    console.log(data);
     const sendEmail =
       await this.sendEmailDefination.sendCreateTicketNotification(ticket);
     return { message: "success", data: data };

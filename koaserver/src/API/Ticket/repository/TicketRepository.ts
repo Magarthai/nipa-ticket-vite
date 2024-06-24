@@ -101,10 +101,11 @@ export class TicketRepository implements ITicketRepository {
     ticket: ITicketCreateRequest
   ): Promise<ITicketCreateRespone> {
     try {
+      console.log(ticket);
       const create = await this.database
         .clone()
         .insert(ticket)
-        .returning([ListTicketDataReturn]);
+        .returning(ListTicketDataReturn);
 
       return create;
     } catch (err) {

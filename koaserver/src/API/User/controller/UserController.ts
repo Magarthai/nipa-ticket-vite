@@ -56,10 +56,7 @@ export class UserController {
     console.log("controller", login);
     if (login.message === UserStatus.Password_matched) {
       try {
-        ctx.cookies.set("refreshToken", login.refreshToken, {
-          httpOnly: true,
-          sameSite: "none",
-        });
+        ctx.cookies.set("refreshToken", login.refreshToken);
       } catch (err) {
         console.log(err);
       }
